@@ -1,0 +1,3 @@
+briefcase
+cookiecutter
+cryptography

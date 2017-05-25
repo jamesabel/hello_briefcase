@@ -56,3 +56,9 @@ var/
 *.iws
 ## mpeltonen/sbt-idea plugin
 .idea_modules/
+
+# jca
+hello_briefcase.txt
+.python-version
+macOS
+venv

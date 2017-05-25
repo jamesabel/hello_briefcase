@@ -69,3 +69,7 @@ setup(
         },
     }
 )
+
+# jca
+import compiled_package_fixup
+compiled_package_fixup.fixup()

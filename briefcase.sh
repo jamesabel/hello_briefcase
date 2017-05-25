@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 rm -rf macOS
-../venv/bin/python setup.py macos
+venv/bin/python setup.py macos
