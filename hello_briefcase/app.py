@@ -8,6 +8,12 @@ import glob
 import sys
 from pprint import pprint
 
+# TODO: THIS IS JUST A TEST FOR import ssl - DELETE THIS
+#import ssl
+#exit()
+
+import hello_briefcase.spafit
+
 for m in [sysconfig, _osx_support]:
     for flag in ['SO', 'SOABI', 'EXT_SUFFIX']:
         cv = sysconfig.get_config_vars()
@@ -46,13 +52,16 @@ import cryptography.fernet
 
 class HelloBriefcase:
     def main_loop(self):
+        hello_message = 'hello briefcase!!!'
         file_path = '/Users/james/projects/pycon_projects/hello_briefcase/hello_briefcase/hello_briefcase.txt'
-        out = ['hello briefcase!!!', str(datetime.datetime.now()), file_path]
+        out = [hello_message, str(datetime.datetime.now()), file_path]
         with open(file_path, 'w') as f:
             for s in out:
                 f.write(s)
                 f.write('\n')
                 print(s)
+
+        hello_briefcase.spafit.spafit()
 
 
 def main():

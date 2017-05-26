@@ -40,7 +40,7 @@ setup(
         # Desktop/laptop deployments
         'macos': {
             'app_requires': [
-                'cryptography'
+                'cryptography', 'pyqt5'
             ]
         },
         'linux': {

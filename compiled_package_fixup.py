@@ -22,10 +22,10 @@ def fixup():
         # example of a compiled binary filename:
         # _cffi_backend.cpython-35m-darwin.so
 
-        for root, _, files in os.walk('macOS'):
-            for file in files:
+        for root, _, briefcase_files in os.walk('macOS'):
+            for briefcase_file in briefcase_files:
                 if 'app_packages' in root:
-                    file_match = re.match('([\w_\.]*)(cpython-)(\d+)(\w*)(-darwin.so)', file)
+                    file_match = re.match('([\w_\.]*)(cpython-)(\d+)(\w*)(-darwin.so)', briefcase_file)
                     if file_match:
                         package_ver = file_match.group(3)
                         if compiled_ver != package_ver:
@@ -33,10 +33,12 @@ def fixup():
                                   (compiled_ver, package_ver))
                         package_flag = file_match.group(4)
                         package_ver_and_flag = package_ver + package_flag
-                        full_path = os.path.join(root, file)
+                        full_path = os.path.join(root, briefcase_file)
                         print('%s : package_ver_and_flag : %s' % (full_path, package_ver_and_flag))
                         if package_ver_and_flag != compiled_ver_and_flag:
-                            fixup_path = os.path.join(root, file.replace(package_ver_and_flag, compiled_ver_and_flag))
+                            # Found a mismatch - copy over the package's .so to a file name that the python interpreter
+                            # is looking for.
+                            fixup_path = os.path.join(root, briefcase_file.replace(package_ver_and_flag, compiled_ver_and_flag))
                             if not os.path.exists(fixup_path):
                                 print('flag mismatch between python "%s" and package "%s" - fixing up' %
                                       (compiled_ver_and_flag, package_ver_and_flag))
